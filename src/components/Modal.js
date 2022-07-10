@@ -16,7 +16,7 @@ export default function Modal({ isCorrect, turn, solution }) {
                 <h1>You Win!</h1>
                 <p className="solution win">SOLUTION: {solution}</p>
                 <p>You found the solution in {turn} guesses :)</p>
-                <button>Play Again</button>
+                <button className="playAgainBtn">Play Again</button>
             </div>
         )}
 
