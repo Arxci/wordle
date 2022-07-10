@@ -1,3 +1,15 @@
+:root {
+    --backdrop: #0A1824;
+    --green: #092409;
+    --yellow: #bda800;
+    --lightGrey: #525659;
+    --grey: #3B3D40;
+    --darkGrey: #212326;
+    --red: #560505;
+    --white: #FFFFFF;
+    --black: #000000;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,11 +20,225 @@ body {
     text-align: center;
     font-size: 1em;
     font-family: verdana;
+    background: var(--backdrop);
 }
 
 h1 {
-    font-size: 1.2em;
+    font-size: 4em;
     padding: 20px 0;
     margin: 0 0 30px 0;
-    color: #333;
+    color: var(--white);
+}
+
+.row {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.row > div {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--lightGrey);
+    margin: 4px;
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.5em;
+}
+
+.row > div.green {
+    --background: var(--green);
+    --border-color: var(--green);
+    animation: flip 500ms ease forwards;
+}
+
+.row > div.grey {
+    --background: var(--darkGrey);
+    --border-color: var(--darkGrey);
+    animation: flip 500ms ease forwards;
+}
+
+.row > div.yellow {
+    --background: var(--yellow);
+    --border-color: var(--yellow);
+    animation: flip 500ms ease forwards;
+}
+
+.row > div:nth-child(2) {
+    animation-delay: 200ms;
+}
+
+.row > div:nth-child(3) {
+    animation-delay: 400ms;
+}
+
+.row > div:nth-child(4) {
+    animation-delay: 600ms;
+}
+
+.row > div:nth-child(5) {
+    animation-delay: 800ms;
+}
+
+.row.current > div.filled {
+    animation: bounce 150ms ease forwards;
+}
+
+.keypad {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.keypad > div {
+    margin: 5px;
+    width: 40px;
+    height: 50px;
+    background: var(--lightGrey);
+    display: inline-block;
+    border-radius: 6px;
+    line-height: 50px;
+    transition: all 300ms ease-in;
+}
+
+.keypad > div.green {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.keypad > div.yellow {
+    background-color: var(--yellow);
+    color: var(--white);
+}
+
+.keypad > div.grey {
+    background-color: var(--darkGrey);
+    color: var(--white);
+}
+
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    min-height: 900px;
+    top: 0%;
+    left: 0;
+    animation: modal 300ms ease forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal h1 {
+    color: var(--backdrop);
+    font-size: 4em;
+}
+
+.modal div {
+    width: 60%;
+    max-width: 480px;
+    background: var(--white);
+    color: var(--black);
+    padding: 40px;
+    border-radius: 10px;
+    margin: 10% auto;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, .6);
+}
+
+.modal .solution {
+
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.playAgainBtn {
+    background: var(--backdrop);
+    padding: 16px 32px;
+    min-width: 50%;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: var(--white);
+    margin: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.playAgainBtn:hover {
+    opacity: 0.9;
+}
+
+.win {
+    color: var(--green);
+}
+
+.lose {
+    color: var(--red);
+}
+
+.modal p {
+    font-size: 1em;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg);
+        background: var(--white);
+        border-color: var(--darkGrey);
+    }
+
+    45% {
+        transform: rotateX(90deg);
+        background: var(--white);
+        border-color: var(--darkGrey);
+    }
+
+    55% {
+        transform: rotateX(90deg);
+        background: var(--background);
+        border-color: var(--border-color);
+        color:  var(--white);
+    }
+
+    100% {
+        transform: rotateX(0deg);
+        background: var(--background);
+        border-color: var(--border-color);
+        color:  var(--white);
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+        border-color: var(--lightGrey);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        border-color: var(--black);
+    }
+}
+
+@keyframes modal {
+    from {
+        transform: scale(.9);
+    }
+
+    50% {
+        transform: scale(1.025);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
