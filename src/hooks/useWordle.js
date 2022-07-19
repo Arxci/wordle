@@ -77,28 +77,40 @@ const useWordle = (solution) => {
         setCurrentGuess('');
     }
 
+    const PressedEnter = () => {
+        console.log('test')
+        if (turn > 5) {
+            return;
+        }
+
+        if (history.includes(currentGuess)) {
+            return;
+        }
+
+        if (currentGuess.length !== 5) {
+            return;
+        }
+
+        const formatted = formatGuess();
+        addNewGuess(formatted);
+    }
+
+    const PressedBack = () => {
+        console.log('hi');
+        setCurrentGuess((prev) => {
+            return prev.slice(0, -1);
+        })
+    }
+
     const handleKeyup = ({ key }) => {
+        console.log(key)
         if (key === "Enter") {
-            if (turn > 5) {
-                return;
-            }
-
-            if (history.includes(currentGuess)) {
-                return;
-            }
-
-            if (currentGuess.length !== 5) {
-                return;
-            }
-
-            const formatted = formatGuess();
-            addNewGuess(formatted);
+            PressedEnter();
+            console.log("Enter")
         }
 
         if (key === "Backspace") {
-            setCurrentGuess((prev) => {
-                return prev.slice(0, -1);
-            })
+            PressedBack();
             return;
         }
 
@@ -111,7 +123,7 @@ const useWordle = (solution) => {
         }
     }
 
-    return {turn, currentGuess, guesses, isCorrect, handleKeyup, usedKeys}
+    return {turn, currentGuess, guesses, isCorrect, handleKeyup, usedKeys, PressedBack, PressedEnter}
 }
 
 export default useWordle;
